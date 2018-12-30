@@ -1,4 +1,3 @@
-var Twit = require('twit')
 
 var fs = require('fs'),
     path = require('path'),
@@ -6,6 +5,10 @@ var fs = require('fs'),
     config = require(path.join(__dirname, 'config.js'));
 
 var T = new Twit(config);
+var dateTime = require('node-datetime');
+var dt = dateTime.create();
+var formatted = dt.format('Y-m-d H:M:S');
+console.log(formatted);
 
 T.get('followers/list', {
 	user_id: 1079435515596812290,
@@ -18,7 +21,7 @@ T.get('followers/list', {
            	 console.log(response)
              response.users.forEach((user) => {
              console.log('tweeting at ' + user.screen_name)
-             T.post('statuses/update', { status: '@' + user.screen_name + ' You are valid! Have a great day! :)' 
+             T.post('statuses/update', { status: '@' + user.screen_name + ' You are super valid! Have a great day! :) (ValidBot:' + formatted 
          		}, function(err, data, response) {
          	 	console.log(data)
 		 		})
