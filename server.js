@@ -21,7 +21,7 @@ T.get('followers/list', {
            	 console.log(response)
              response.users.forEach((user) => {
              console.log('tweeting at ' + user.screen_name)
-             T.post('statuses/update', { status: '@' + user.screen_name + ' You are super valid! Have a great day! :) (ValidBot:' + formatted 
+             T.post('statuses/update', { status: '@' + user.screen_name + ' You are super valid! Have a great day! :) (ValidBot:' + formatted + ')'
          		}, function(err, data, response) {
          	 	console.log(data)
 		 		})
