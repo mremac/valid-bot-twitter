@@ -10,18 +10,21 @@ var dt = dateTime.create();
 var formatted = dt.format('Y-m-d H:M:S');
 console.log(formatted);
 
+var adjex = ['super', 'extremely', 'totally', 'absurdly', 'powerfully', 'mega', 'ultra', 'especially', 'contagiously'];
+
 T.get('followers/list', {
 	user_id: 1079435515596812290,
 	screen_name: 'BotValid'
 	}, function (err, response) {
            if (err) {
-             console.log('Something went wrong while getting followers. Error: ', err)
+             console.log('Something went wrong while getting followers. Error: ', err, err.errors)
            }
            if (response) {
            	 console.log(response)
              response.users.forEach((user) => {
              console.log('tweeting at ' + user.screen_name)
-             T.post('statuses/update', { status: '@' + user.screen_name + ' You are super valid! Have a great day! :) (ValidBot:' + formatted + ')'
+             var randomNumber = Math.floor(Math.random()*adjex.length)
+             T.post('statuses/update', { status: '@' + user.screen_name + ' You are ' + adjex[randomNumber] + ' valid! Have a great day! :) (ValidBot:' + formatted + ')'
          		}, function(err, data, response) {
          	 	console.log(data)
 		 		})
